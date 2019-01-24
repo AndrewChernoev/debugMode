@@ -1,0 +1,2 @@
+# debugMode
+iOS Debug mode
