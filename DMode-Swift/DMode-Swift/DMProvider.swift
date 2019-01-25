@@ -49,7 +49,8 @@ public final class DMProvider: UIResponder {
         if config.showAppInfo {
             let type = [DMInfoType.appName, DMInfoType.appId, DMInfoType.appVersion]
             type.forEach { (info) in
-                let model = makeCellModel(type: DMActionType.info,
+                let action = DMAction(type: DMActionType.info)
+                let model = makeCellModel(action: action,
                                           title: info.rawValue,
                                           subtitle: info.value())
                 items.append(model)
@@ -59,22 +60,30 @@ public final class DMProvider: UIResponder {
         let userInfo = config.userInfo
         if userInfo.count > 0 {
             userInfo.keys.forEach { (key) in
-                let model = makeCellModel(type: DMActionType.info,
+                let action = DMAction(type: DMActionType.info)
+                let model = makeCellModel(action: action,
                                           title: key,
                                           subtitle: userInfo[key])
                 items.append(model)
             }
         }
         
+        config.actions.forEach { (action) in
+            let model = makeCellModel(action: action,
+                                      title: action.title ?? "",
+                                      subtitle: action.description)
+            items.append(model)
+            
+        }
+        
         return DMDataProvider(items: items)
     }
     
-    private func makeCellModel(type: DMActionType = DMActionType.undefined,
+    private func makeCellModel(action: DMActionInterface? = nil,
                                title: String = "",
                                subtitle: String? = "") -> DMCellModel {
-        return DMCellModel(type: type, title: title, subtitle: subtitle)
+        return DMCellModel(action: action, title: title, subtitle: subtitle)
     }
-    
 }
 
 //MARK: -

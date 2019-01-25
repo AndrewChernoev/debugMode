@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias DMActionEvent = () -> DMActionInterface
+public typealias DMActionEvent = (DMActionInterface?) -> ()
 
 public enum DMActionType {
     case undefined
@@ -23,9 +23,19 @@ public protocol DMActionInterface {
     var callback: DMActionEvent? {get set}
 }
 
-struct DMAction: DMActionInterface {
-    var type: DMActionType
-    var title: String?
-    var description: String?
-    var callback: DMActionEvent?
+public struct DMAction: DMActionInterface {
+    public var type: DMActionType
+    public var title: String?
+    public var description: String?
+    public var callback: DMActionEvent?
+    
+    public init(type: DMActionType = DMActionType.undefined,
+                title: String? = "",
+                description: String? = "",
+                callback: DMActionEvent? = nil) {
+        self.type = type
+        self.title = title
+        self.description = description
+        self.callback = callback
+    }
 }

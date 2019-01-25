@@ -11,12 +11,12 @@ import Foundation
 public class DMCellModel {
     let title: String
     let subtitle: String
-    let type: DMActionType
+    let action: DMActionInterface?
     
-    init(type: DMActionType = .undefined,
+    init(action: DMActionInterface?,
          title: String,
          subtitle: String? = "") {
-        self.type = type
+        self.action = action
         self.title = title
         self.subtitle = subtitle ?? ""
     }

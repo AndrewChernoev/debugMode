@@ -18,7 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        let config = DMConfiguration(showAppInfo: true)
+        let srv = "http:www.example.com"
+        let action = DMAction(type: DMActionType.action,
+                              title: "Изменить сервер",
+                              description: srv) { (action) -> () in
+                                
+        }
+        
+        let config = DMConfiguration(showAppInfo: true,
+                                     userInfo: ["Сервер" : srv],
+                                     actions: [action])
         DMProvider.shared.updateConfiguration(config)
 
         return true

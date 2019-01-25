@@ -65,13 +65,16 @@ extension DMDataProvider: UITableViewDataSource {
 }
 
 extension DMDataProvider: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selected = tableView.cellForRow(at: indexPath) as? DMInfoCell {
-            if let model = selected.viewModel {
-                switch model.type {
+            if let type = selected.viewModel?.action?.type {
+                switch type {
                 case .info :
                     debugPrint("Info action type")
                 case .action:
+                    if let act = selected.viewModel?.action {
+                        act.callback?(act)
+                    }
                     debugPrint("Update action type")
                 default:
                     debugPrint("Undefined action type")
