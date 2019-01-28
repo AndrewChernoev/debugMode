@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let selectServerConfig = DMConfiguration(actions: [devAction, stageAction])
         selectServerAction = DMAction(type: DMActionType.action,
                                       title: "Change server",
+                                      description: currentServer,
                                       config: selectServerConfig)
         actions.append(selectServerAction)
         

@@ -40,7 +40,7 @@ public class DMController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        appInfoTableView?.estimatedRowHeight = 44.0
+        appInfoTableView?.estimatedRowHeight = 80.0
         appInfoTableView?.rowHeight = UITableView.automaticDimension
     }
     
