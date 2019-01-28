@@ -40,6 +40,8 @@ public class DMController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        appInfoTableView?.estimatedRowHeight = 44.0
+        appInfoTableView?.rowHeight = UITableView.automaticDimension
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -73,5 +75,9 @@ extension DMController: UITableViewDelegate {
             selectItemHandler?(selected.viewModel)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

@@ -29,28 +29,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW8-oj-912">
-                                                    <rect key="frame" x="16" y="11.5" width="42" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="oJK-Op-3Wc"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW8-oj-912">
+                                                    <rect key="frame" x="16" y="2" width="357" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8f-Je-Ixk">
-                                                    <rect key="frame" x="62" y="13.5" width="35.5" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8f-Je-Ixk">
+                                                    <rect key="frame" x="16" y="24.5" width="357" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N8f-Je-Ixk" secondAttribute="trailing" constant="2" id="9ax-Te-cQf"/>
+                                                <constraint firstAttribute="bottom" secondItem="N8f-Je-Ixk" secondAttribute="bottom" constant="2" id="2yM-Sq-hgd"/>
+                                                <constraint firstItem="N8f-Je-Ixk" firstAttribute="top" secondItem="XW8-oj-912" secondAttribute="bottom" constant="2" id="6Dt-xx-xuo"/>
+                                                <constraint firstAttribute="trailing" secondItem="N8f-Je-Ixk" secondAttribute="trailing" constant="2" id="9ax-Te-cQf"/>
+                                                <constraint firstAttribute="trailing" secondItem="XW8-oj-912" secondAttribute="trailing" constant="2" id="IJe-p4-91Q"/>
+                                                <constraint firstItem="XW8-oj-912" firstAttribute="top" secondItem="o7G-Pk-v91" secondAttribute="top" constant="2" id="L3U-Aa-lIz"/>
                                                 <constraint firstItem="XW8-oj-912" firstAttribute="leading" secondItem="o7G-Pk-v91" secondAttribute="leading" constant="16" id="Qfo-lu-vjL"/>
-                                                <constraint firstItem="N8f-Je-Ixk" firstAttribute="centerY" secondItem="o7G-Pk-v91" secondAttribute="centerY" id="Wd8-Z2-HWl"/>
-                                                <constraint firstItem="N8f-Je-Ixk" firstAttribute="leading" secondItem="XW8-oj-912" secondAttribute="trailing" constant="4" id="cey-h9-r9G"/>
-                                                <constraint firstItem="XW8-oj-912" firstAttribute="centerY" secondItem="o7G-Pk-v91" secondAttribute="centerY" id="sSt-Wq-1xc"/>
+                                                <constraint firstItem="N8f-Je-Ixk" firstAttribute="leading" secondItem="o7G-Pk-v91" secondAttribute="leading" constant="16" id="bIf-ff-Kvr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
