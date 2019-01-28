@@ -8,14 +8,22 @@
 
 import UIKit
 
+typealias ActionHandler = (DMInfoCellModel?) -> ()
+
 public class DMController: UIViewController {
     
     @IBOutlet var appInfoTableView: UITableView?
+    
+    var selectItemHandler: ActionHandler?
     
     private var dataProvider: DMDataProviderInterface? {
         didSet {
             reloadData()
         }
+    }
+    
+    public func updateDataProvider(dataProvider: DMDataProviderInterface) {
+        self.dataProvider = dataProvider
     }
     
     public static func load(dataProvider: DMDataProviderInterface?) -> DMController? {
@@ -46,6 +54,8 @@ public class DMController: UIViewController {
         }
         if let delegate = dataProvider as? UITableViewDelegate {
             appInfoTableView?.delegate = delegate
+        } else {
+            appInfoTableView?.delegate = self
         }
         appInfoTableView?.reloadData()
     }
@@ -54,4 +64,14 @@ public class DMController: UIViewController {
         return Bundle(identifier: "CA.DMode-Swift")
     }
     
+}
+
+//MARK: -
+extension DMController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selected = tableView.cellForRow(at: indexPath) as? DMInfoCell {
+            selectItemHandler?(selected.viewModel)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

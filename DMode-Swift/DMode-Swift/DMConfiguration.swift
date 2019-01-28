@@ -26,4 +26,8 @@ public struct DMConfiguration: DMConfigurationInterface {
         self.userInfo = userInfo
         self.actions = actions
     }
+    
+    public mutating func addActions(_ actions:[DMActionInterface]) {
+        self.actions = actions
+    }
 }

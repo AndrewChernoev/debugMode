@@ -8,8 +8,12 @@
 
 import Foundation
 
-public class DMCellModel {
-    let title: String
+public protocol DMCellModelInterface {
+    var title: String {set get}
+}
+
+public class DMInfoCellModel: DMCellModelInterface {
+    public var title: String
     let subtitle: String
     let action: DMActionInterface?
     

@@ -34,12 +34,13 @@ enum DMInfoType: String {
 }
 
 public protocol DMDataProviderInterface {
-    var items: [DMCellModel] {get set}
+    var items: [DMCellModelInterface] {get set}
 }
 
 public class DMDataProvider: NSObject, DMDataProviderInterface {
-    public var items: [DMCellModel] = []
-    init(items: [DMCellModel]) {
+    public var items: [DMCellModelInterface] = []
+    
+    init(items: [DMCellModelInterface]) {
         self.items = items
     }
 }
@@ -54,33 +55,22 @@ extension DMDataProvider: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "DMInfoCell",
-                                                    for: indexPath) as? DMInfoCell {
-            let model = items[indexPath.row]
-            cell.viewModel = model
-            return cell
+        let model = items[indexPath.row]
+        
+        if let infoModel = model as? DMInfoCellModel {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DMInfoCell",
+                                                        for: indexPath) as? DMInfoCell {
+                cell.viewModel = infoModel
+                return cell
+            }
+        } else if let sectionModel = model as? DMSectionCellModel {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DMSectionCell",
+                                                        for: indexPath) as? DMSectionCell {
+                cell.title?.text = sectionModel.title
+                return cell
+            }
         }
         return UITableViewCell.init()
     }
 }
 
-extension DMDataProvider: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selected = tableView.cellForRow(at: indexPath) as? DMInfoCell {
-            if let type = selected.viewModel?.action?.type {
-                switch type {
-                case .info :
-                    debugPrint("Info action type")
-                case .action:
-                    if let act = selected.viewModel?.action {
-                        act.callback?(act)
-                    }
-                    debugPrint("Update action type")
-                default:
-                    debugPrint("Undefined action type")
-                }
-            }
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}

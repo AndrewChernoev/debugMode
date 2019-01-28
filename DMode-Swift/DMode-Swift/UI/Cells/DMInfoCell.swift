@@ -12,7 +12,7 @@ class DMInfoCell: UITableViewCell {
     @IBOutlet var title: UILabel?
     @IBOutlet var subTitle: UILabel?
     
-    var viewModel: DMCellModel? {
+    var viewModel: DMInfoCellModel? {
         didSet {
             self.title?.text = viewModel?.title
             self.subTitle?.text = viewModel?.subtitle

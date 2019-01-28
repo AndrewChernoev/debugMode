@@ -10,12 +10,21 @@ import UIKit
 import DMode_Swift
 
 class ViewController: UIViewController {
+    @IBOutlet open var label: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            label?.text = delegate.currentServer
+        }
+    }
+    
     @IBAction func tap(_ sender: Any?) {
-        
+        DMProvider.shared.show()
     }
 }
 

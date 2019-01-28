@@ -27,8 +27,20 @@ public final class DMProvider: UIResponder {
     public func updateConfiguration(_ config: DMConfigurationInterface) {
         configuration = config
         let data = makeDataProviderWith(config: config)
-        presenter?.dismiss()
-        presenter = DMPresenter(dataProvider: data)
+        
+        if presenter == nil {
+            presenter = DMPresenter(dataProvider: data)
+            presenter?.leftAction = config.actions.filter({ (action) -> Bool in
+                return action.type == DMActionType.complete
+            }).last
+            
+            presenter?.rightAction = config.actions.filter({ (action) -> Bool in
+                return action.type == DMActionType.cancel
+            }).last
+        } else {
+            presenter?.reloadWithNewData(dataProvider: data)
+        }
+        
     }
     
     //MARK: - Private
@@ -43,10 +55,11 @@ public final class DMProvider: UIResponder {
         }
     }
     
-    private func makeDataProviderWith(config: DMConfigurationInterface) -> DMDataProviderInterface {
-        var items: [DMCellModel] = []
+    public func makeDataProviderWith(config: DMConfigurationInterface) -> DMDataProviderInterface {
+        var items: [DMCellModelInterface] = []
         
         if config.showAppInfo {
+            items.append(DMSectionCellModel(title: "Application info"))
             let type = [DMInfoType.appName, DMInfoType.appId, DMInfoType.appVersion]
             type.forEach { (info) in
                 let action = DMAction(type: DMActionType.info)
@@ -59,6 +72,7 @@ public final class DMProvider: UIResponder {
         
         let userInfo = config.userInfo
         if userInfo.count > 0 {
+            items.append(DMSectionCellModel(title: "User info"))
             userInfo.keys.forEach { (key) in
                 let action = DMAction(type: DMActionType.info)
                 let model = makeCellModel(action: action,
@@ -68,7 +82,13 @@ public final class DMProvider: UIResponder {
             }
         }
         
-        config.actions.forEach { (action) in
+        let userActions = config.actions.filter { (action) -> Bool in
+            return action.type == .action
+        }
+        if userActions.count > 0 {
+            items.append(DMSectionCellModel(title: "Actions"))
+        }
+        userActions.forEach { (action) in
             let model = makeCellModel(action: action,
                                       title: action.title ?? "",
                                       subtitle: action.description)
@@ -81,8 +101,8 @@ public final class DMProvider: UIResponder {
     
     private func makeCellModel(action: DMActionInterface? = nil,
                                title: String = "",
-                               subtitle: String? = "") -> DMCellModel {
-        return DMCellModel(action: action, title: title, subtitle: subtitle)
+                               subtitle: String? = "") -> DMInfoCellModel {
+        return DMInfoCellModel(action: action, title: title, subtitle: subtitle)
     }
 }
 

@@ -19,16 +19,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fed-P6-Nhy">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="123.5" y="318.5" width="128" height="30"/>
+                                <state key="normal" title="Show debug menu"/>
                                 <connections>
                                     <action selector="tap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sj8-X0-b6l"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6G-FW-Jmm">
+                                <rect key="frame" x="0.0" y="60" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fed-P6-Nhy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8Er-hl-BFb"/>
+                            <constraint firstItem="P6G-FW-Jmm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MXa-pf-rxk"/>
+                            <constraint firstItem="P6G-FW-Jmm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="Vwv-P6-I3x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P6G-FW-Jmm" secondAttribute="trailing" id="mHT-c6-Umh"/>
                             <constraint firstItem="fed-P6-Nhy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nPu-i2-vkq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

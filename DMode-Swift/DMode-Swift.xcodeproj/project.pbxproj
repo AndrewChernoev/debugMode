@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0EF0B821FEF21400D64AB1 /* DMSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0EF0B721FEF21400D64AB1 /* DMSectionCell.swift */; };
+		9F0EF0BB21FEF25400D64AB1 /* DMSectionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0EF0BA21FEF25400D64AB1 /* DMSectionCellModel.swift */; };
 		9F5D2B0F21F9D5ED009F354F /* DMode_Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F5D2B0D21F9D5ED009F354F /* DMode_Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F5D2B1C21F9DA87009F354F /* DMStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F5D2B1B21F9DA87009F354F /* DMStoryBoard.storyboard */; };
 		9F5D2B1E21F9DAA0009F354F /* DMController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D2B1D21F9DAA0009F354F /* DMController.swift */; };
@@ -15,13 +17,15 @@
 		9FB1106A21FB0F9100923009 /* DMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1106921FB0F9100923009 /* DMProvider.swift */; };
 		9FB1106C21FB163300923009 /* DMPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1106B21FB163300923009 /* DMPresenter.swift */; };
 		9FB1106F21FB174B00923009 /* DMInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1106E21FB174B00923009 /* DMInfoCell.swift */; };
-		9FB1107121FB178700923009 /* DMCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1107021FB178700923009 /* DMCellModel.swift */; };
+		9FB1107121FB178700923009 /* DMInfoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1107021FB178700923009 /* DMInfoCellModel.swift */; };
 		9FB1107321FB187B00923009 /* DMDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1107221FB187B00923009 /* DMDataProvider.swift */; };
 		9FB1107521FB1B4200923009 /* DMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1107421FB1B4200923009 /* DMConfiguration.swift */; };
 		9FB1107721FB1B5800923009 /* DMAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1107621FB1B5800923009 /* DMAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F0EF0B721FEF21400D64AB1 /* DMSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSectionCell.swift; sourceTree = "<group>"; };
+		9F0EF0BA21FEF25400D64AB1 /* DMSectionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSectionCellModel.swift; sourceTree = "<group>"; };
 		9F5D2B0A21F9D5ED009F354F /* DMode_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DMode_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5D2B0D21F9D5ED009F354F /* DMode_Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMode_Swift.h; sourceTree = "<group>"; };
 		9F5D2B0E21F9D5ED009F354F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,7 +34,7 @@
 		9FB1106921FB0F9100923009 /* DMProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMProvider.swift; sourceTree = "<group>"; };
 		9FB1106B21FB163300923009 /* DMPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMPresenter.swift; sourceTree = "<group>"; };
 		9FB1106E21FB174B00923009 /* DMInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMInfoCell.swift; sourceTree = "<group>"; };
-		9FB1107021FB178700923009 /* DMCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCellModel.swift; sourceTree = "<group>"; };
+		9FB1107021FB178700923009 /* DMInfoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMInfoCellModel.swift; sourceTree = "<group>"; };
 		9FB1107221FB187B00923009 /* DMDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMDataProvider.swift; sourceTree = "<group>"; };
 		9FB1107421FB1B4200923009 /* DMConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMConfiguration.swift; sourceTree = "<group>"; };
 		9FB1107621FB1B5800923009 /* DMAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMAction.swift; sourceTree = "<group>"; };
@@ -47,6 +51,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0EF0B921FEF24B00D64AB1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9FB1106E21FB174B00923009 /* DMInfoCell.swift */,
+				9FB1107021FB178700923009 /* DMInfoCellModel.swift */,
+				9F0EF0B721FEF21400D64AB1 /* DMSectionCell.swift */,
+				9F0EF0BA21FEF25400D64AB1 /* DMSectionCellModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9F5D2B0021F9D5ED009F354F = {
 			isa = PBXGroup;
 			children = (
@@ -82,8 +97,7 @@
 				9FB1106B21FB163300923009 /* DMPresenter.swift */,
 				9F5D2B1D21F9DAA0009F354F /* DMController.swift */,
 				9FB1107221FB187B00923009 /* DMDataProvider.swift */,
-				9FB1107021FB178700923009 /* DMCellModel.swift */,
-				9FB1106E21FB174B00923009 /* DMInfoCell.swift */,
+				9F0EF0B921FEF24B00D64AB1 /* Cells */,
 				9F5D2B1B21F9DA87009F354F /* DMStoryBoard.storyboard */,
 			);
 			path = UI;
@@ -175,10 +189,12 @@
 				9FB1106F21FB174B00923009 /* DMInfoCell.swift in Sources */,
 				9FB1107321FB187B00923009 /* DMDataProvider.swift in Sources */,
 				9FB1106A21FB0F9100923009 /* DMProvider.swift in Sources */,
+				9F0EF0BB21FEF25400D64AB1 /* DMSectionCellModel.swift in Sources */,
 				9FB1106C21FB163300923009 /* DMPresenter.swift in Sources */,
 				9F5D2B1E21F9DAA0009F354F /* DMController.swift in Sources */,
-				9FB1107121FB178700923009 /* DMCellModel.swift in Sources */,
+				9FB1107121FB178700923009 /* DMInfoCellModel.swift in Sources */,
 				9FB1107521FB1B4200923009 /* DMConfiguration.swift in Sources */,
+				9F0EF0B821FEF21400D64AB1 /* DMSectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

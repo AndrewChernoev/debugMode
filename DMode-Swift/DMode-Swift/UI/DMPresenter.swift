@@ -9,8 +9,11 @@
 import UIKit
 
 public final class DMPresenter {
-    let controller: UIViewController?
+    let controller: DMController?
     public var isPresenting: Bool = false
+    
+    public var leftAction: DMActionInterface?
+    public var rightAction: DMActionInterface?
     
     private var visibleViewController: UIViewController? {
         var currentVc = UIApplication.shared.keyWindow?.rootViewController
@@ -30,12 +33,34 @@ public final class DMPresenter {
         controller = DMController.load(dataProvider: dataProvider)
     }
     
+    public func reloadWithNewData(dataProvider: DMDataProviderInterface) {
+        controller?.updateDataProvider(dataProvider: dataProvider)
+    }
     public func show() {
         if let vc = controller {
-            let nvc = makeNVC(with: vc)
-            visibleViewController?.present(nvc, animated: true, completion: { [weak self] in
-                self?.isPresenting = true
-            })
+             vc.selectItemHandler = { [weak self] (item) in
+                guard let cellModel = item else { return }
+                if let type = cellModel.action?.type {
+                    switch type {
+                    case .action:
+                        if let config = cellModel.action?.config {
+                            let provider = DMProvider.shared.makeDataProviderWith(config: config)
+                            if let subController = DMController.load(dataProvider: provider) {
+                                self?.show(viewController: subController)
+                                subController.selectItemHandler = { (item) in
+                                    item?.action?.callback?(item?.action)
+                                    subController.navigationController?.popViewController(animated: true)
+                                }
+                            }
+                        }
+                    case .info:
+                        debugPrint("info")
+                    default:
+                        debugPrint(type)
+                    }
+                }
+            }
+            show(viewController: vc)
         }
     }
     
@@ -45,28 +70,47 @@ public final class DMPresenter {
         })
     }
     
+    private func show(viewController: UIViewController) {
+        if let visible = visibleViewController,
+            visible.isKind(of: DMController.self) {
+            visibleViewController?.navigationController?.show(viewController, sender: self)
+        } else {
+            let nvc = makeNVC(with: viewController)
+            visibleViewController?.present(nvc,
+                                           animated: true,
+                                           completion: { [weak self] in
+                self?.isPresenting = true
+            })
+        }
+    }
+    
     private func makeNVC(with root: UIViewController) -> UINavigationController {
         let vc = UINavigationController(rootViewController: root)
-        let homeButton : UIBarButtonItem = UIBarButtonItem(title: "Save",
-                                                           style: UIBarButtonItem.Style.done,
+        if let left = leftAction {
+            let button : UIBarButtonItem = UIBarButtonItem(title: left.title,
+                                                           style: UIBarButtonItem.Style.plain,
                                                            target: self,
-                                                           action: #selector(save))
-        
-        let logButton : UIBarButtonItem = UIBarButtonItem(title: "Cancel",
-                                                          style: UIBarButtonItem.Style.plain,
-                                                          target: self, action: #selector(cancel))
-
-        root.navigationItem.leftBarButtonItem = homeButton
-        root.navigationItem.rightBarButtonItem = logButton
+                                                           action: #selector(leftActionHandler))
+            root.navigationItem.leftBarButtonItem = button
+        }
+        if let right = rightAction {
+            let rightButton : UIBarButtonItem = UIBarButtonItem(title: right.title,
+                                                              style: UIBarButtonItem.Style.plain,
+                                                              target: self,
+                                                              action: #selector(rightActionHandlerncel))
+            root.navigationItem.rightBarButtonItem = rightButton
+        }
         return vc
     }
     
     //MARK: -
-    @objc func save() {
+    @objc func leftActionHandler() {
+        leftAction?.callback?(leftAction)
         dismiss()
     }
     
-    @objc func cancel() {
+    @objc func rightActionHandlerncel() {
+        rightAction?.callback?(rightAction)
         dismiss()
     }
 

@@ -14,6 +14,8 @@ public enum DMActionType {
     case undefined
     case info
     case action
+    case complete
+    case cancel
 }
 
 public protocol DMActionInterface {
@@ -21,21 +23,25 @@ public protocol DMActionInterface {
     var title: String? {get set}
     var description: String? {get set}
     var callback: DMActionEvent? {get set}
+    var config: DMConfigurationInterface? {get set}
 }
 
-public struct DMAction: DMActionInterface {
+public class DMAction: DMActionInterface {
     public var type: DMActionType
     public var title: String?
     public var description: String?
     public var callback: DMActionEvent?
+    public var config: DMConfigurationInterface?
     
     public init(type: DMActionType = DMActionType.undefined,
                 title: String? = "",
                 description: String? = "",
+                config: DMConfigurationInterface? = nil,
                 callback: DMActionEvent? = nil) {
         self.type = type
         self.title = title
         self.description = description
         self.callback = callback
+        self.config = config
     }
 }
